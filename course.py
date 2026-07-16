@@ -16,11 +16,17 @@ class Course:
         self.assessments.append(assessment)
         # This part will be completed after creating class "Assessment"
 
-    #TODO: Create find_assessment() after creating the Assessment Class
+    def find_assessment(self, title):
+        for assessment in self.assessments:
+            if assessment.title == title:
+                return assessment
+        return None
 
 
     def display_info(self):
         print(f"Course Code: {self.course_code}")
         print(f"Course Name: {self.course_name}")
         print(f"Enrolled Students: {len(self.students)}")
-        # This part will be completed after creating class "Assessment"
+        print("Assessments:")
+        for assessment in self.assessments:
+            assessment.display_info()
