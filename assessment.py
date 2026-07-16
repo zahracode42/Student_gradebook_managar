@@ -4,8 +4,18 @@ class Assessment:
         self.max_score = max_score
 
     def calculate_percentage(self, score):
-        if score >= 0:
             return score / self.max_score * 100
-        else:
-            print("Invalid score!")
 
+    def grade_message(self, score):
+        percentage = self.calculate_percentage(score)
+        if percentage >= 90:
+            return "Excellent work!"
+        elif percentage >= 70:
+            return "Good job!"
+        elif percentage >= 40:
+            return "Needs more practice."
+        else:
+            return "Study more!"
+
+    def display_info(self):
+        print(f"{self.title} - Max Score: {self.max_score}")
