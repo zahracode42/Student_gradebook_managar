@@ -70,4 +70,23 @@ class GradeBook:
             scores.append(self.grades[student_id][course_code][assessment])
         average = sum(scores) / len(scores)
         return average
-    
+
+    def show_report(self, student_id):
+        if student_id not in self.grades:
+            print("Student has no grades.")
+            return
+        student = self.students[student_id]
+        print(f"Student ID: {student.get_id()}")
+        print(f"Student Name: {student.get_name()}")
+        print(f"Email: {student.email}")
+        for course_code in self.grades[student_id]:
+            print(f"\nCourse: {course_code}")
+            print("Grades:")
+            for assessment_title in self.grades[student_id][course_code]:
+                score = self.grades[student_id][course_code][assessment_title]
+                print(f"{assessment_title}: {score}")
+
+            average = self.calculate_average(student_id, course_code)
+            print(f"Average: {average}")
+            #TODO-1 update after creating get_result method
+            #TODO-2 update after creating letter grades
