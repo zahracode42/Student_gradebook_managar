@@ -1,4 +1,4 @@
-class Gradebook:
+class GradeBook:
     def __init__(self):
         self.students = {}
         self.courses = {}
@@ -56,3 +56,18 @@ class Gradebook:
             self.grades[student_id][course_code] = {}
 
         self.grades[student_id][course_code][assessment_title] = score
+
+    def calculate_average(self, student_id, course_code):
+        if student_id not in self.grades:
+            print("Student has no grades.")
+            return
+        if course_code not in self.grades[student_id]:
+            print("Course has no grades.")
+            return
+
+        scores = []
+        for assessment in self.grades[student_id][course_code]:
+            scores.append(self.grades[student_id][course_code][assessment])
+        average = sum(scores) / len(scores)
+        return average
+    
