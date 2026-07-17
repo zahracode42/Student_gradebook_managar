@@ -90,3 +90,12 @@ class GradeBook:
             print(f"Average: {average}")
             #TODO-1 update after creating get_result method
             #TODO-2 update after creating letter grades
+
+    def search_student(self, keyword):
+        for student in self.students.values():
+            if student.get_id() == keyword:
+                return student
+            elif student.get_name() == keyword:
+                return student
+        print("Student not found.")
+        return None
