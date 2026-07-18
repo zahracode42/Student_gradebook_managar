@@ -87,8 +87,9 @@ class GradeBook:
                 print(f"{assessment_title}: {score}")
 
             average = self.calculate_average(student_id, course_code)
+            result = self.get_results(average)
             print(f"Average: {average}")
-            #TODO-1 update after creating get_result method
+            print(f"Result: {result}")
             #TODO-2 update after creating letter grades
 
     def search_student(self, keyword):
@@ -108,3 +109,8 @@ class GradeBook:
         if student_id in self.grades:
             del self.grades[student_id]
 
+    def get_result(self, average):
+        if average >= self.passing_grade:
+            return "Passed"
+        else:
+            return "Failed"
