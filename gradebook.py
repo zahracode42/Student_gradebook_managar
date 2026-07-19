@@ -114,3 +114,11 @@ class GradeBook:
             return "Passed"
         else:
             return "Failed"
+
+    def view_students(self):
+        if len(self.students) == 0:
+            print("No students found. Add student first.")
+            return
+        for student in self.students.values():
+            student.display_info()
+            print("\n")
