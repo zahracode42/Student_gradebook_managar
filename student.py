@@ -3,7 +3,7 @@ class Student:
     def __init__(self, student_id, name, email):
         self.__student_id = student_id
         self.__name = name
-        self.__email = email
+        self.email = email
         self.courses = []
 
     def get_id(self):
@@ -21,7 +21,7 @@ class Student:
             self.__email = email
             print("Email updated:)")
         else:
-            print("Invalid email!")
+            self.__email = None
 
     def enroll_course(self, course_code):
         self.courses.append(course_code)
