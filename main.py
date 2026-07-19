@@ -9,6 +9,14 @@ from exam import Exam
 from gradebook import GradeBook
 
 gradebook = GradeBook()
+
+student = Student("s001", "Ahmad", "ahmad@gmail.com")
+gradebook.add_student(student)
+
+course = Course("cs101", "Python")
+gradebook.add_course(course)
+
+gradebook.enroll_student("s001", "cs101")
 running_main_menu = True
 while running_main_menu:
     print("==== *Student Gradebook Manager* ====")
@@ -48,7 +56,6 @@ while running_main_menu:
 
         course = Course(course_code, title)
         gradebook.add_course(course)
-        print(gradebook.courses)
 
     elif choice == "4":
         student_id = input("Enter student ID: ")
@@ -60,7 +67,7 @@ while running_main_menu:
         print("1. Quiz \n2. Exam \n3. Project")
         assessment_type = input("Choose assessment type: ")
         title = input("Enter assessment title: ")
-        max_score = input("Enter max score: ")
+        max_score = int(input("Enter max score: "))
         if assessment_type == "1":
             assessment = Quiz(title, max_score)
         elif assessment_type == "2":
@@ -73,7 +80,13 @@ while running_main_menu:
             gradebook.add_assessment(course_code, assessment)
             print("Assessment added successfully!")
     elif choice == "6":
-        pass
+        student_id = input("Enter student ID: ")
+        course_code = input("Enter course code: ")
+        assessment_title = input("Enter assessment title: ")
+        score = int(input("Enter score: "))
+        gradebook.record_grade(student_id, course_code, assessment_title, score)
+        print("Grade recorded successfully")
+        print(gradebook.grades)
 
     elif choice == "7":
         pass
