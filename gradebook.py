@@ -14,6 +14,7 @@ class GradeBook:
     def add_course(self, course):
         if course.course_code not in self.courses:
             self.courses[course.course_code] = course
+            print("Course added successfully.")
         else:
             print("Course already exists")
 
@@ -23,9 +24,10 @@ class GradeBook:
             course = self.courses[course_code]
 
             student.enroll_course(course_code)
-            course.add_student(student)
+            course.add_student(student_id)
+            print("Student enrolled successfully.")
         else:
-            print("Student or course not exist")
+            print("Student or course not exist. Add course or student first.")
 
     def add_assessment(self, course_code, assessment):
         if course_code in self.courses:
@@ -87,7 +89,7 @@ class GradeBook:
                 print(f"{assessment_title}: {score}")
 
             average = self.calculate_average(student_id, course_code)
-            result = self.get_results(average)
+            result = self.get_result(average)
             print(f"Average: {average}")
             print(f"Result: {result}")
             #TODO-2 update after creating letter grades

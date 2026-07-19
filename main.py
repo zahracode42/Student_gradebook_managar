@@ -1,6 +1,7 @@
 from os import name
 
 from assessment import Assessment
+from project import Project
 from student import Student
 from course import Course
 from quiz import Quiz
@@ -24,7 +25,7 @@ while running_main_menu:
     choice = input("Choose an option: ")
 
     if choice == "1":
-        student_id = int(input("Enter student ID: "))
+        student_id = input("Enter student ID: ")
         name = input("Enter student name: ")
 
         valid_email = False
@@ -42,14 +43,35 @@ while running_main_menu:
         gradebook.view_students()
 
     elif choice == "3":
-        pass
+        course_code = input("Enter course code: ")
+        title = input("Enter course title: ")
+
+        course = Course(course_code, title)
+        gradebook.add_course(course)
+        print(gradebook.courses)
 
     elif choice == "4":
-        pass
+        student_id = input("Enter student ID: ")
+        course_id = input("Enter course code: ")
+        gradebook.enroll_student(student_id, course_id)
 
     elif choice == "5":
-        pass
-
+        course_code = input("Enter course code: ")
+        print("1. Quiz \n2. Exam \n3. Project")
+        assessment_type = input("Choose assessment type: ")
+        title = input("Enter assessment title: ")
+        max_score = input("Enter max score: ")
+        if assessment_type == "1":
+            assessment = Quiz(title, max_score)
+        elif assessment_type == "2":
+            assessment = Exam(title, max_score)
+        elif assessment_type == "3":
+            assessment = Project(title, max_score)
+        else :
+            print("Invalid assessment type. Only choose one of the options.")
+        if assessment_type in ["1", "2", "3"]:
+            gradebook.add_assessment(course_code, assessment)
+            print("Assessment added successfully!")
     elif choice == "6":
         pass
 
@@ -70,4 +92,5 @@ while running_main_menu:
         print("Invalid choice. You can *only* choose one of the options.")
 
     if running_main_menu:
+        input("Press Enter to continue...")
         print("\n" * 2)
